@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FileAccessSample"
+             x:Class="FileAccessSample.MainPage">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="DogsSmallTemplate">
+            <ViewCell>
+                <StackLayout Margin="2">
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Breed:" />
+                        <Label Text="{Binding Path=Breed}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Origin:" />
+                        <Label Text="{Binding Path=Origin}" />
+                    </StackLayout>
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+    
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="lvDogs" Margin="5"
+                  Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                  ItemSelected="lvDogs_ItemSelected"
+                  ItemTemplate="{StaticResource DogsSmallTemplate}"/>
+        <StackLayout x:Name="s1OneDog" Orientation="Horizontal"
+                     Grid.Row="0" Grid.Column="1" 
+                     VerticalOptions="Center" HorizontalOptions="Center">
+            
+            <StackLayout x:Name="slNonEdits" Margin="4">
+                
+                <Frame BackgroundColor="Blue" WidthRequest="100" HeightRequest="100"/>
+                
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="Breed:" />
+                    <Label x:Name="lblBreed" Text="{Binding Path=Breed}" />
+                </StackLayout>
+                <Button x:Name="btnUpdateOneDog" Text="Updtae Entry"
+                        Clicked="btnUpdateOneDog_Clicked" IsEnabled="False"/>
+            </StackLayout>
+            
+            <StackLayout x:Name="slCanEdit" Margin="4">
+                <StackLayout Orientation="Horizontal" Margin="2" >
+                    <Label Text="Origin:" />
+                    <Entry  x:Name="entOrigin" Text="{Binding Path=Origin}" TextChanged="DogPropertyEntry_TextChanged" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="2" >
+                    <Label Text="Category:" />
+                    <Entry x:Name="entCategory" Text="{Binding Path=Category}" TextChanged="DogPropertyEntry_TextChanged" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="2" >
+                    <Label Text="Exercise:" />
+                    <Entry x:Name="entExercise" Text="{Binding Path=Exercise}" TextChanged="DogPropertyEntry_TextChanged" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="2" >
+                    <Label Text="Grooming:" />
+                    <Entry x:Name="entGrooming" Text="{Binding Path=Grooming}" TextChanged="DogPropertyEntry_TextChanged" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="2" >
+                    <Label Text="Breed:" />
+                    <Entry x:Name="entBreed" Text="{Binding Path=Breed}" TextChanged="DogPropertyEntry_TextChanged" />
+                </StackLayout>
+               
+            </StackLayout>
+ 
+        </StackLayout>
+        <StackLayout x:Name="slButtons" Margin="5"
+                     Grid.Row="1" Grid.Column="1"
+                     HorizontalOptions="Center">
+            <Button x:Name="SaveToFile" Text="Save To File" Clicked="btnSaveToFile_Clicked"/>
+            <Button x:Name="btnReadFromFile" Text="Read From File" Clicked="btnReadFromFile_Clicked"/>
+        </StackLayout>
+                     
+    </Grid>
+
+</ContentPage>
